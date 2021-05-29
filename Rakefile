@@ -21,7 +21,8 @@ task :install => [:submodule_init, :submodules] do
   install_files(Dir.glob('tmux/*')) if want_to_install?('tmux config')
   install_files(Dir.glob('vimify/*')) if want_to_install?('vimification of command line tools')
   if want_to_install?('vim configuration (highly recommended)')
-    run %{ ln -nfs "#{ENV["PWD"]}/init.vim" "#{ENV["HOME"]}/.config/nvim/init.vim" }
+    run %{ mkdir -p "#{ENV["HOME"]}/.config/nvim/" }
+    run %{ ln -nfs "#{ENV["PWD"]}/init.vim" "#{ENV["HOME"]}/.config/nvim/" }
     install_files(Dir.glob('{vim,vimrc}'))
     Rake::Task["install_vundle"].execute
   end
@@ -176,16 +177,20 @@ def install_homebrew
   puts "Installing Homebrew packages...There may be some warnings."
   puts "======================================================"
   run %{brew install zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher ghi}
-  run %{brew install neovim ack fasd jq node tcptunnel tree wget wireshark}
+  run %{brew install neovim ack fasd jq node tcptunnel tree wget}
   run %{brew tap federico-terzi/espanso}
   run %{brew install espanso}
   run %{brew install --cask authy vlc dropbox firefox flux iterm2 the-unarchiver caffeine}
   run %{brew install --cask grammarly jetbrains-toolbox notion postman sequel-ace visual-studio-code docker-toolbox}
-  run %{brew install --cask whichspace sourcetree freeplane}
+  run %{brew install --cask whichspace sourcetree freeplane wireshark}
+  install_hammerspoon
+  puts
+  puts
+end
+
+def install_hammerspoon
   run %{brew install --cask  hammerspoon}
-  run %{ln -s #{ENV["PWD"]}/hammerspoon/init.lua ~/.hammerspoon/}
-  puts
-  puts
+  run %{git clone git@github.com:tmkarthi/awesome-hammerspoon.git "#{ENV["HOME"]}/.hammerspoon"}
 end
 
 def install_fonts

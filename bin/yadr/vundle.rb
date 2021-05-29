@@ -26,7 +26,7 @@ module Vundle
   end
 
   def self.update_vundle
-    system "vim --noplugin -u #{ENV['HOME']}/.vim/vundles.vim -N \"+set hidden\" \"+syntax on\" \"+let g:session_autosave = 'no'\" +BundleClean +BundleInstall! +qall"
+    system "nvim --noplugin -u #{ENV['HOME']}/.vim/vundles.vim -N \"+set hidden\" \"+syntax on\" \"+let g:session_autosave = 'no'\" +BundleClean +BundleInstall! +qall"
   end
 
 
