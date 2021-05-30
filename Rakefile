@@ -22,8 +22,8 @@ task :install => [:submodule_init, :submodules] do
   install_files(Dir.glob('vimify/*')) if want_to_install?('vimification of command line tools')
   if want_to_install?('vim configuration (highly recommended)')
     run %{ mkdir -p "#{ENV["HOME"]}/.config/nvim/" }
-    run %{ ln -nfs "#{ENV["PWD"]}/init.vim" "#{ENV["HOME"]}/.config/nvim/" }
-    install_files(Dir.glob('{vim,vimrc}'))
+    run %{ ln -nfs "#{ENV["PWD"]}/vim/init.vim" "#{ENV["HOME"]}/.config/nvim/" }
+    install_files(Dir.glob('{vim,vimrc,ideavimrc}'))
     Rake::Task["install_vundle"].execute
   end
 
