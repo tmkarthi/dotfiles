@@ -1,5 +1,8 @@
 # set your user tokens as environment variables, such as ~/.secrets
 # See the README for examples.
+[user]
+	name = Karthikeyan Marudhachalam
+	email = karthikeyan.marudhachalam@freshworks.com
 [color]
   ui = true
 [color "branch"]
@@ -113,7 +116,7 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.yadr/git/gitignore
+	excludesfile = /Users/kmarudhachalam/.yadr/git/gitignore
 [advice]
   statusHints = false
 [diff]
@@ -129,3 +132,13 @@
   path = .gitconfig.user
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/kmarudhachalam/.stCommitMsg
